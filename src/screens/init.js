@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet,FlatList,TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet,FlatList,TouchableWithoutFeedback,DeviceEventEmitter } from 'react-native';
 import {
     Container,
     Content,
@@ -17,10 +17,12 @@ import {
     Right,
     Body,
     CardItem,
+    Picker
 } from "native-base";
 import axios from 'axios';
 import Constants from '../utils/Constants';
 import styles from './style';
+import simpleStore from 'react-native-simple-store';
 
 class InitialPage extends React.PureComponent {
     constructor(props) {
@@ -29,13 +31,25 @@ class InitialPage extends React.PureComponent {
             dataTypes: [],
             loading: true,
             page: 1,
-            refreshing: false
+            refreshing: false,
+            selectedLanguage: '',
         };
     }
 
     componentDidMount()
     {
+        simpleStore.get('language').then(data => {
+            if(data)
+                this.setState({selectedLanguage: data});
+            else this.setState({selectedLanguage: 'en'});
+        });
+
         this.loadData();
+
+        DeviceEventEmitter.addListener('LANGUAGE_CHANGED', data => {
+            this.loadData();
+        });
+        
     }
 
     loadData = () => 
@@ -60,6 +74,20 @@ class InitialPage extends React.PureComponent {
 
         
     }
+
+    onLanguageChange = (value) => {
+        this.setState({selectedLanguage: value});
+        i18n.locale = value;
+        simpleStore.update('language', value).then(data => {
+            console.log('Language Updated!!!', data);
+            DeviceEventEmitter.emit('LANGUAGE_CHANGED', {  });
+            /*this.setState({showLanguageSpinner: true}, () => {
+                setTimeout(() => {
+                    this.setState({showLanguageSpinner: false});
+                }, 1000);
+            });*/
+        });
+    };
 
     _handleRefresh = () => {
         this.setState(
@@ -102,7 +130,8 @@ class InitialPage extends React.PureComponent {
                       <Title style={{ marginRight: 5 }}>Star Wars List</Title>
                       
                   </Body>
-                 <Right>
+                 <Right >
+                    
                   </Right>
               </Header>
 
@@ -139,6 +168,23 @@ class InitialPage extends React.PureComponent {
                            refreshing={this.state.refreshing}
 
                            />
+                    </View>
+
+                    <View style={{justifyContent: 'center'}}>
+                        <Picker
+                        mode="dropdown"
+                        iosIcon={<Icon name="arrow-down"/>}
+                        placeholder="Select your language"
+                        placeholderStyle={{color: "#bfc6ea"}}
+                        placeholderIconColor="#007aff"
+                        style={{width: undefined}}
+                        selectedValue={this.state.selectedLanguage}
+                        onValueChange={this.onLanguageChange}
+                        >
+                        <Picker.Item label="English" value="en"/>
+                        <Picker.Item label="Spanish" value="es"/>
+                        <Picker.Item label="French" value="fr"/>
+                        </Picker>
                     </View>
                 </Container>
             )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,DeviceEventEmitter} from 'react-native';
 import { StackNavigator } from "react-navigation";
 //import {createStackNavigator } from "react-navigation-stack";
 import { Container } from "native-base";
@@ -12,6 +12,10 @@ const Main = StackNavigator({
 
 export default class App extends React.PureComponent{
   
+
+  componentDidMount(){
+    
+  }
 
 
 
