@@ -107,7 +107,7 @@ class InitialPage extends React.PureComponent {
         //console.log('Selected Item :', url);
         let dataName = this.hardcodeLanguageChange(item);
 
-        console.log('Selected Item :', dataName);
+        //console.log('Selected Item :', dataName);
 
         this.props.navigation.navigate("ListDetails",{
             dataType: dataName,
