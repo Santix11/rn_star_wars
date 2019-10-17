@@ -22,11 +22,11 @@ import axios from 'axios';
 import Constants from '../utils/Constants';
 import styles from './style';
 
-class InitialPage extends React.PureComponent {
+class ListDetails extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            dataTypes: [],
+            detailsList: [],
             loading: true,
             page: 1,
             refreshing: false
@@ -40,14 +40,14 @@ class InitialPage extends React.PureComponent {
 
     loadData = () => 
     {
-        let url = `${Constants.API_BASE_URL}`;
+        let url = this.props.navigation.state.params.urlLink;
 
         axios.get(url).then(res => {
 
-            //console.log("data: " + JSON.stringify(res.data));
+            console.log("detailsData: " + JSON.stringify(res.data.results));
 
             this.setState({
-                dataTypes: res.data,
+                detailsList: res.data.results,
                 loading: false,
                 refreshing: false
             }, () => {
@@ -57,9 +57,8 @@ class InitialPage extends React.PureComponent {
         }).catch(error => {
             console.log("dataTypes error: " + error);
         });
-
-        
     }
+
 
     _handleRefresh = () => {
         this.setState(
@@ -74,14 +73,9 @@ class InitialPage extends React.PureComponent {
       };
 
       actionOnRow(item) {
-          let url = this.state.dataTypes[item];
-        //console.log('Selected Item :', url);
-
-        this.props.navigation.navigate("ListDetails",{
-            dataType: item,
-            urlLink: url,
-        });
-     }
+        
+    }
+    
 
     render(){
         const navigation = this.props.navigation;
@@ -94,23 +88,26 @@ class InitialPage extends React.PureComponent {
         else{
             return(
                 <Container >
-                    <Header >
-                  <Left>
-                      
-                  </Left>
-                  <Body style={{ flex: 3, flexDirection: "row", justifyContent: 'center' }}>
-                      <Title style={{ marginRight: 5 }}>Star Wars List</Title>
-                      
-                  </Body>
-                 <Right>
-                  </Right>
-              </Header>
+                
+                <Header >
+                     <Left>
+                       <Button transparent onPress={() => {
+                           navigation.goBack();
+                           }}>
+                         <Icon name="arrow-back" />
+                       </Button>
+                     </Left>
+                     <Body>
+                     <Title>{navigation.state.params.dataType} List</Title>
+                     </Body>
+                     <Right />
+                   </Header>
 
 
-                    <View padder style={styles.listContentContainerStyle}>
+                   <View padder style={styles.listContentContainerStyle}>
                     <FlatList
                            style={[styles.card, {width: Constants.SCREEN_WIDTH - 10 }]}
-                           data={Object.keys(this.state.dataTypes)}
+                           data={this.state.detailsList}
                            keyExtractor={(item, index) => index.toString()}
                            renderItem={({ item: dataRow}) => (
                             <TouchableWithoutFeedback onPress={ () => this.actionOnRow(dataRow)}>
@@ -124,7 +121,7 @@ class InitialPage extends React.PureComponent {
                                        <Left style={styles.cardItem}>
                                            
                                            <Text style={{ fontWeight: "bold" }}>
-                                               {dataRow}
+                                               {dataRow.name}
                                            </Text>
                                        </Left>
                                    </CardItem>
@@ -140,6 +137,8 @@ class InitialPage extends React.PureComponent {
 
                            />
                     </View>
+
+                
                 </Container>
             )
 
@@ -147,9 +146,6 @@ class InitialPage extends React.PureComponent {
         
     }
 
-
 }
 
-
-
-export default InitialPage;
+export default ListDetails;

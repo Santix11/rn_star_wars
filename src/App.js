@@ -3,12 +3,14 @@ import { StackNavigator, } from "react-navigation";
 //import {createStackNavigator,createAppContainer } from "react-navigation-stack";
 import { Root } from "native-base";
 
-import InitialPage from './screens/init'
+import InitialPage from './screens/init';
+import ListDetails from './screens/ListDetails';
 import nav from './utils/Navigator';
 
 const App = StackNavigator(
     {
         InitialPage: { screen: InitialPage},
+        ListDetails: { screen: ListDetails},
     },
     {
         index: 0,
