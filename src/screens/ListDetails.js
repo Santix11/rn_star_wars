@@ -82,26 +82,26 @@ class ListDetails extends React.PureComponent {
         if(this.props.navigation.state.params.dataType == i18n.t('people'))
         {
             return <Left style={styles.cardItem2}>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('name')}: {dataRow.name}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('height')}: {dataRow.height}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('mass')}: {dataRow.mass}
                 </Text>
                 </Left>
         }else if (this.props.navigation.state.params.dataType == i18n.t('planets'))
         {
             return <Left style={styles.cardItem2}>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('name')}: {dataRow.name}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('diameter')}: {dataRow.diameter}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('terrain')}: {dataRow.terrain}
                 </Text>
                 </Left>
@@ -109,13 +109,13 @@ class ListDetails extends React.PureComponent {
         else if (this.props.navigation.state.params.dataType == i18n.t('films'))
         {
             return <Left style={styles.cardItem2}>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('title')}: {dataRow.title}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('director')}: {dataRow.director}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('release_date')}: {dataRow.release_date}
                 </Text>
                 </Left>
@@ -123,13 +123,13 @@ class ListDetails extends React.PureComponent {
         else if (this.props.navigation.state.params.dataType == i18n.t('species'))
         {
             return <Left style={styles.cardItem2}>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('name')}: {dataRow.name}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('lifespan')}: {dataRow.average_lifespan}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('language')}: {dataRow.language}
                 </Text>
                 </Left>
@@ -137,13 +137,13 @@ class ListDetails extends React.PureComponent {
         else if (this.props.navigation.state.params.dataType == i18n.t('vehicles'))
         {
             return <Left style={styles.cardItem2}>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('name')}: {dataRow.name}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('crew')}: {dataRow.crew}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('length')}: {dataRow.length}
                 </Text>
                 </Left>
@@ -151,13 +151,13 @@ class ListDetails extends React.PureComponent {
         else if (this.props.navigation.state.params.dataType == i18n.t('starships'))
         {
             return <Left style={styles.cardItem2}>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('name')}: {dataRow.name}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('crew')}: {dataRow.crew}
                 </Text>
-                <Text style={{ fontWeight: "bold" }}>
+                <Text >
                 {i18n.t('length')}: {dataRow.length}
                 </Text>
                 </Left>

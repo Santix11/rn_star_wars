@@ -186,7 +186,7 @@ class InitialPage extends React.PureComponent {
                                    }} >
                                        <Left style={styles.cardItem}>
                                            
-                                           <Text style={{ fontWeight: "bold" }}>
+                                           <Text >
                                                {this.hardcodeLanguageChange(dataRow)}
                                            </Text>
                                        </Left>

@@ -11,11 +11,6 @@ export default {
     backgroundColor: "transparent",
     elevation: 0
   },
-  // cardView: {
-  //   borderBottomWidth: 1,
-  //   borderBottomColor: "#9BA3A7",
-  //   height: 180
-  // },
 
   cardView: {
     borderRadius: 10,
@@ -46,23 +41,7 @@ export default {
     backgroundColor: "transparent", flex: 1, flexDirection: "column", justifyContent: "space-around",justifyContent: 'center',
     alignItems: 'center'
   },
-  date: {
-    textAlign: "right",
-    fontSize: 10,
-    fontWeight: "400"
-  },
 
-  button: {
-    height: 33,
-    width: 140,
-    marginTop: 3,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonText: {
-    fontSize: 11,
-    color: 'white'
-  },
 
   listContentContainerStyle: {
     justifyContent: 'center',
@@ -71,17 +50,4 @@ export default {
     flex: 1,
   },
 
-  footer: {
-    width,
-    flexDirection: "row",
-    // height: 100,
-    // borderWidth: 0,
-    // alignSelf: "stretch",
-    // alignItems: "center",
-    // justifyContent: "space-around",
-    backgroundColor: "#616D74"
-  },
-  footerText: {
-    color: 'white'
-  },
 };
