@@ -21,6 +21,7 @@ import {
 import axios from 'axios';
 import Constants from '../utils/Constants';
 import styles from './style';
+import i18n from '../localization/index';
 
 class ListDetails extends React.PureComponent {
     constructor(props) {
@@ -44,7 +45,7 @@ class ListDetails extends React.PureComponent {
 
         axios.get(url).then(res => {
 
-            console.log("detailsData: " + JSON.stringify(res.data.results));
+            //console.log("detailsData: " + JSON.stringify(res.data.results));
 
             this.setState({
                 detailsList: res.data.results,
@@ -78,86 +79,86 @@ class ListDetails extends React.PureComponent {
 
     buildList = (dataRow) => {
 
-        if(this.props.navigation.state.params.dataType == 'people')
+        if(this.props.navigation.state.params.dataType == i18n.t('people'))
         {
             return <Left style={styles.cardItem2}>
                 <Text style={{ fontWeight: "bold" }}>
-                Name: {dataRow.name}
+                {i18n.t('name')}: {dataRow.name}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Height: {dataRow.height}
+                {i18n.t('height')}: {dataRow.height}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Mass: {dataRow.mass}
+                {i18n.t('mass')}: {dataRow.mass}
                 </Text>
                 </Left>
-        }else if (this.props.navigation.state.params.dataType == 'planets')
+        }else if (this.props.navigation.state.params.dataType == i18n.t('planets'))
         {
             return <Left style={styles.cardItem2}>
                 <Text style={{ fontWeight: "bold" }}>
-                Name: {dataRow.name}
+                {i18n.t('name')}: {dataRow.name}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Diameter: {dataRow.diameter}
+                {i18n.t('diameter')}: {dataRow.diameter}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Terrain: {dataRow.terrain}
-                </Text>
-                </Left>
-        }
-        else if (this.props.navigation.state.params.dataType == 'films')
-        {
-            return <Left style={styles.cardItem2}>
-                <Text style={{ fontWeight: "bold" }}>
-                Title: {dataRow.title}
-                </Text>
-                <Text style={{ fontWeight: "bold" }}>
-                Director: {dataRow.director}
-                </Text>
-                <Text style={{ fontWeight: "bold" }}>
-                Release Date: {dataRow.release_date}
+                {i18n.t('terrain')}: {dataRow.terrain}
                 </Text>
                 </Left>
         }
-        else if (this.props.navigation.state.params.dataType == 'species')
+        else if (this.props.navigation.state.params.dataType == i18n.t('films'))
         {
             return <Left style={styles.cardItem2}>
                 <Text style={{ fontWeight: "bold" }}>
-                Name: {dataRow.name}
+                {i18n.t('title')}: {dataRow.title}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                LifeSpan: {dataRow.average_lifespan}
+                {i18n.t('director')}: {dataRow.director}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Language: {dataRow.language}
+                {i18n.t('release_date')}: {dataRow.release_date}
                 </Text>
                 </Left>
         }
-        else if (this.props.navigation.state.params.dataType == 'vehicles')
+        else if (this.props.navigation.state.params.dataType == i18n.t('species'))
         {
             return <Left style={styles.cardItem2}>
                 <Text style={{ fontWeight: "bold" }}>
-                Name: {dataRow.name}
+                {i18n.t('name')}: {dataRow.name}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Crew: {dataRow.crew}
+                {i18n.t('lifespan')}: {dataRow.average_lifespan}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Length: {dataRow.length}
+                {i18n.t('language')}: {dataRow.language}
                 </Text>
                 </Left>
         }
-        else if (this.props.navigation.state.params.dataType == 'starships')
+        else if (this.props.navigation.state.params.dataType == i18n.t('vehicles'))
         {
             return <Left style={styles.cardItem2}>
                 <Text style={{ fontWeight: "bold" }}>
-                Name: {dataRow.name}
+                {i18n.t('name')}: {dataRow.name}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Crew: {dataRow.crew}
+                {i18n.t('crew')}: {dataRow.crew}
                 </Text>
                 <Text style={{ fontWeight: "bold" }}>
-                Length: {dataRow.length}
+                {i18n.t('length')}: {dataRow.length}
+                </Text>
+                </Left>
+        }
+        else if (this.props.navigation.state.params.dataType == i18n.t('starships'))
+        {
+            return <Left style={styles.cardItem2}>
+                <Text style={{ fontWeight: "bold" }}>
+                {i18n.t('name')}: {dataRow.name}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                {i18n.t('crew')}: {dataRow.crew}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                {i18n.t('length')}: {dataRow.length}
                 </Text>
                 </Left>
         }
@@ -184,8 +185,8 @@ class ListDetails extends React.PureComponent {
                          <Icon name="arrow-back" />
                        </Button>
                      </Left>
-                     <Body>
-                     <Title>{navigation.state.params.dataType} List</Title>
+                     <Body style={{ flex: 3, flexDirection: "row", justifyContent: 'center' }}>
+                     <Title>{navigation.state.params.dataType}</Title>
                      </Body>
                      <Right />
                    </Header>

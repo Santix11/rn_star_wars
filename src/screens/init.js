@@ -23,6 +23,7 @@ import axios from 'axios';
 import Constants from '../utils/Constants';
 import styles from './style';
 import simpleStore from 'react-native-simple-store';
+import i18n from '../localization/index';
 
 class InitialPage extends React.PureComponent {
     constructor(props) {
@@ -104,11 +105,44 @@ class InitialPage extends React.PureComponent {
       actionOnRow(item) {
           let url = this.state.dataTypes[item];
         //console.log('Selected Item :', url);
+        let dataName = this.hardcodeLanguageChange(item);
+
+        console.log('Selected Item :', dataName);
 
         this.props.navigation.navigate("ListDetails",{
-            dataType: item,
+            dataType: dataName,
             urlLink: url,
         });
+     }
+
+     hardcodeLanguageChange(dataRow){
+         if(dataRow == 'people')
+         {
+             return i18n.t('people');
+         }
+         else if(dataRow == 'planets')
+         {
+            return i18n.t('planets');
+         }
+         else if(dataRow == 'films')
+         {
+            return i18n.t('films');
+         }
+         else if(dataRow == 'species')
+         {
+            return i18n.t('species');
+         }
+         else if(dataRow == 'vehicles')
+         {
+            return i18n.t('vehicles');
+         }
+         else if(dataRow == 'starships')
+         {
+            return i18n.t('starships');
+         }else{
+            return dataRow;
+         }
+
      }
 
     render(){
@@ -127,7 +161,7 @@ class InitialPage extends React.PureComponent {
                       
                   </Left>
                   <Body style={{ flex: 3, flexDirection: "row", justifyContent: 'center' }}>
-                      <Title style={{ marginRight: 5 }}>Star Wars List</Title>
+                      <Title style={{ marginRight: 5 }}>{i18n.t('main_title')}</Title>
                       
                   </Body>
                  <Right >
@@ -153,7 +187,7 @@ class InitialPage extends React.PureComponent {
                                        <Left style={styles.cardItem}>
                                            
                                            <Text style={{ fontWeight: "bold" }}>
-                                               {dataRow}
+                                               {this.hardcodeLanguageChange(dataRow)}
                                            </Text>
                                        </Left>
                                    </CardItem>
