@@ -42,6 +42,10 @@ export default {
   cardItem: {
     backgroundColor: "transparent", flex: 1, flexDirection: "row", justifyContent: "space-around"
   },
+  cardItem2: {
+    backgroundColor: "transparent", flex: 1, flexDirection: "column", justifyContent: "space-around",justifyContent: 'center',
+    alignItems: 'center'
+  },
   date: {
     textAlign: "right",
     fontSize: 10,
@@ -63,7 +67,8 @@ export default {
   listContentContainerStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 0
+    paddingTop: 0,
+    flex: 1,
   },
 
   footer: {

@@ -75,6 +75,93 @@ class ListDetails extends React.PureComponent {
       actionOnRow(item) {
         
     }
+
+    buildList = (dataRow) => {
+
+        if(this.props.navigation.state.params.dataType == 'people')
+        {
+            return <Left style={styles.cardItem2}>
+                <Text style={{ fontWeight: "bold" }}>
+                Name: {dataRow.name}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Height: {dataRow.height}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Mass: {dataRow.mass}
+                </Text>
+                </Left>
+        }else if (this.props.navigation.state.params.dataType == 'planets')
+        {
+            return <Left style={styles.cardItem2}>
+                <Text style={{ fontWeight: "bold" }}>
+                Name: {dataRow.name}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Diameter: {dataRow.diameter}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Terrain: {dataRow.terrain}
+                </Text>
+                </Left>
+        }
+        else if (this.props.navigation.state.params.dataType == 'films')
+        {
+            return <Left style={styles.cardItem2}>
+                <Text style={{ fontWeight: "bold" }}>
+                Title: {dataRow.title}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Director: {dataRow.director}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Release Date: {dataRow.release_date}
+                </Text>
+                </Left>
+        }
+        else if (this.props.navigation.state.params.dataType == 'species')
+        {
+            return <Left style={styles.cardItem2}>
+                <Text style={{ fontWeight: "bold" }}>
+                Name: {dataRow.name}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                LifeSpan: {dataRow.average_lifespan}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Language: {dataRow.language}
+                </Text>
+                </Left>
+        }
+        else if (this.props.navigation.state.params.dataType == 'vehicles')
+        {
+            return <Left style={styles.cardItem2}>
+                <Text style={{ fontWeight: "bold" }}>
+                Name: {dataRow.name}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Crew: {dataRow.crew}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Length: {dataRow.length}
+                </Text>
+                </Left>
+        }
+        else if (this.props.navigation.state.params.dataType == 'starships')
+        {
+            return <Left style={styles.cardItem2}>
+                <Text style={{ fontWeight: "bold" }}>
+                Name: {dataRow.name}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Crew: {dataRow.crew}
+                </Text>
+                <Text style={{ fontWeight: "bold" }}>
+                Length: {dataRow.length}
+                </Text>
+                </Left>
+        }
+    };
     
 
     render(){
@@ -118,12 +205,8 @@ class ListDetails extends React.PureComponent {
                                        justifyContent: 'space-between',
                                        flex:1
                                    }} >
-                                       <Left style={styles.cardItem}>
-                                           
-                                           <Text style={{ fontWeight: "bold" }}>
-                                               {dataRow.name}
-                                           </Text>
-                                       </Left>
+                                       {this.buildList(dataRow)}
+                                       
                                    </CardItem>
                             </View>
                             </TouchableWithoutFeedback>
@@ -131,7 +214,7 @@ class ListDetails extends React.PureComponent {
                            )}
 
                            onEndReachedThreshold={0}
-                           initialNumToRender={10}
+                           initialNumToRender={30}
                            onRefresh={this._handleRefresh}
                            refreshing={this.state.refreshing}
 
